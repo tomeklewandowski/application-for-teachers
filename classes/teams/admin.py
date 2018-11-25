@@ -13,3 +13,4 @@ class GroupAdmin(admin.ModelAdmin):
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     pass
+

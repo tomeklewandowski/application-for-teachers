@@ -24,11 +24,11 @@ class Group(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
-    start_date = models.DateField(
-        verbose_name="Data rozpoczęcia",
-        null=True,
-        blank=True
-    )
+    #start_date = models.DateField(
+        #verbose_name="Data rozpoczęcia",
+        #null=True,
+        #blank=True
+    #)
 
     def __str__(self):
         return self.signature
@@ -57,6 +57,11 @@ class Student(models.Model):
         Group,
         verbose_name="Grupa",
         on_delete=models.CASCADE
+    )
+    exercises = models.ManyToManyField(
+        'exams.Exercise',
+        verbose_name="Zadania",
+        through='exams.ExerciseStudent'
     )
 
     def __str__(self):
