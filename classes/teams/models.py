@@ -70,3 +70,4 @@ class Student(models.Model):
     class Meta:
         verbose_name = "Kursant"
         verbose_name_plural = "Kursanci"
+

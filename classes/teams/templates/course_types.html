@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Types</title>
 </head>
 <body>
-$END$
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dodaj kurs</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+    <label></label>
+    <input type=""text" name="name" />
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>
+
+<br /> <br /> <br /> <br />
+<h2>Lista typów</h2>
+<ul>
+    {% for type in types %}
+    <li>{{ type.name }} <a href="{% url 'delete-type' type.id %}">Usuń</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
 </body>
 </html>

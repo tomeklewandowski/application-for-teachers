@@ -2,9 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<h2>Nawigacja</h2>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'list-types' %}">Typy kursów</a></li>
+            <li><a href="{% url 'list-groups' %}">Grupy</a></li>
+            <li><a href="{% url 'list-students' %}">Kursanci</a></li>
+            <li><a href="{% url 'list-exams' %}">Egzaminy</a></li>
+            <li><a href="{% url 'list-exercise' %}">Zadania</a></li>
+        </ul>
+    </nav>
+</header>
+{% block content %}
+{% endblock %}
 </body>
 </html>

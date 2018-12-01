@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dodaj zadanie</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+    <label>Numer zadania</label>
+    <input type="number" name="exercise_num" />
+    </div>
+     <div>
+    <label>Punkty</label>
+    <input type="number" name="exercise_pkt" />
+    </div>
+     <div>
+    <label>Opis</label>
+    <input type="text" name="description" />
+    </div>
+    <div>
+        <label>Egzamin</label>
+        <select name="exam">
+            {% for exam in exams %}
+            <option value="{{ exam.id }}">{{ exam.name }}</option>
+            {% endfor %}
+        </select>
+        </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>
+
+<br /> <br /> <br /> <br />
+<h2>Lista zadań</h2>
+<ul>
+    {% for exercise in exercises %}
+    <li>{{ exercise.id }} <a href="{% url 'delete-exercise' exercise.id %}">Usuń</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>

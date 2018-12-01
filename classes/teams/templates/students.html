@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Students</title>
 </head>
 <body>
-$END$
+{% extends 'base.html' %}
+{% block content %}
+<h2>Wprowadź studenta</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+    <label>Imię</label>
+    <input type="text" name="name" />
+        <label>Nazwisko</label>
+        <input type="text" name="surname" />
+        <label>E-mail</label>
+        <input type="email" name="email" />
+        <label>Github Nick</label>
+        <input type="text" name="github_nick" />
+    </div>
+    <div>
+        <label>Grupa</label>
+        <select name="group">
+            {% for group in groups %}
+            <option value="{{ group.id }}">{{ group.signature }}</option>
+            {% endfor %}
+        </select>
+        </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>
+
+<br /> <br /> <br /> <br />
+<h2>Lista studentów</h2>
+<ul>
+    {% for student in students %}
+    <li>{{ student }} <a href="{% url 'delete-student' student.id %}">Usuń</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
 </body>
 </html>

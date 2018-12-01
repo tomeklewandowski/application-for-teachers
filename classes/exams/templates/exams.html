@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Types</title>
+    <title>Exams</title>
 </head>
 <body>
 {% extends 'base.html' %}
 {% block content %}
-<h2>Dodaj grupę</h2>
+<h2>Dodaj egzamin</h2>
 <form method="post">
     {% csrf_token %}
     <div>
-    <label>Sygnatura</label>
-    <input type="text" name="signature" />
-    </div>
-    <div>
+        <div>
         <label>Typ kursu</label>
         <select name="type">
             {% for type in types %}
@@ -22,16 +19,22 @@
             {% endfor %}
         </select>
         </div>
+        <label>Nazwa egzaminu</label>
+    <input type="text" name="name" />
+    </div>
+    <label>Numer egzaminu</label>
+    <div><input type="number" name="module_num" />
+    </div>
     <div>
         <input type="submit" />
     </div>
 </form>
 
 <br /> <br /> <br /> <br />
-<h2>Lista typów</h2>
+<h2>Lista egzaminów</h2>
 <ul>
-    {% for group in groups %}
-    <li>{{ group.signature }} <a href="{% url 'delete-group' group.id %}">Usuń</a></li>
+    {% for exam in exams %}
+    <li>{{ exam.name }} <a href="{% url 'delete-exam' exam.id %}">Usuń</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
