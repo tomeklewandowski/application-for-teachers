@@ -12,5 +12,11 @@ class GroupAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'name',
+        'surname',
+        'email'
+    )
+
+    search_fields = ('name', 'surname', 'email',)
 

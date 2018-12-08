@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+<h2>Zadania studentów</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+    <label>Numer zadania</label>
+    <input type="number" name="exercise_num" />
+    </div>
+     <div>
+    <label>Kursant</label>
+         <select name="student">
+            {% for student in students %}
+            <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select>
+     </div>
+    <div>
+        <label>Punkty uzyskane przez studenta</label>
+    <input type="number" name="exercisestudent_pkt" />
+    </div>
+    <div>
+        <label>Egzamin</label>
+        <select name="exam">
+            {% for exam in exams %}
+            <option value="{{ exam.id }}">{{ exam.name }}</option>
+            {% endfor %}
+        </select>
+        </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>
+
+<br /> <br /> <br /> <br />
+<h2>Lista zadań</h2>
+<ul>
+    {% for exercisestudent in exercisestudents %}
+    <li>{{ exercisestudent.id }} <a href="{% url 'delete-exercisestudent' exercisestudent.id %}">Usuń</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>
